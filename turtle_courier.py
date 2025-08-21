@@ -26,7 +26,7 @@ def run_inefficient_demo():
     # Create data
     houses = []
     for i in range(num_houses):
-        houses.append("house_{i}")
+        houses.append(f"house_{i}")
     packages = set()
     while len(packages) != num_packages:
         packages.add(f"house_{random.randrange(num_houses)}")
