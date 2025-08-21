@@ -30,13 +30,13 @@ def deliver(drivers_req,packages,houses):
                 break
     print(delivered)
     
-
+ 
     
 
 if __name__ == '__main__':
-    num_drivers = 1000
+    num_drivers = 500
     num_houses = 1500000
-    num_packages = 20000
+    num_packages = 5000
     
     
     driver_list = driver_creator(num_drivers)
