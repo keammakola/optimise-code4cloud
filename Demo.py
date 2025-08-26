@@ -3,6 +3,10 @@
 # 🎬 INTERACTIVE DEMO RUNNER
 # ============================================================================
 
+from cheetah_kitchen import organized_kitchen_demo
+from turtle_kitchen import chaotic_kitchen_demo
+
+
 def run_restaurant_demo():
     """
     Run the interactive restaurant demo with REAL resource usage
