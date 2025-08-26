@@ -15,8 +15,8 @@ def run_efficient_demo():
     print("=" * 50)
     
     # Configuration (same as inefficient demo)
-    num_houses = 15000
-    num_packages = 10000
+    num_houses = 500000
+    num_packages = 400000
     
     # Create data    
     houses  = []

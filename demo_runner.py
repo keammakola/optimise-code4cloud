@@ -23,12 +23,12 @@ def main():
     # Show comparison
     print("\n" +  " RESULTS " )
     print("=" * 50)
-    print(f"Inefficient time: {inefficient_time:.4f} seconds")
-    print(f"Efficient time:   {efficient_time:.6f} seconds")
+    print(f"turtle courier: {inefficient_time:.4f} seconds")
+    print(f"cheetah courier:   {efficient_time:.6f} seconds")
     print(f"Speed improvement: {inefficient_time/efficient_time:.1f}x faster!")
     
-    print(f"\nInefficient cost: ${inefficient_cost:.6f}")
-    print(f"Efficient cost:   ${efficient_cost:.6f}")
+    print(f"\nturtle courier cost: ${inefficient_cost:.6f}")
+    print(f"cheetah courier cost:   ${efficient_cost:.6f}")
     print(f"Cost savings:     {inefficient_cost/efficient_cost:.1f}x cheaper!")
     
     # Calculate projected annual savings
@@ -39,11 +39,13 @@ def main():
     print(f"\n PROJECTED ANNUAL SAVINGS: ${annual_savings:.2f}")
     
     # Explain the difference
-    print("\n" +  " KEY INSIGHT " )
-    print("Inefficient code: O(n×m) complexity")
+    print("=" * 50)
+    print("KEY INSIGHTS" )
+    print("=" * 50) 
+    print("Inefficient code:")
     print("  - For each package, check EVERY house")
     print("  - 800 packages × 15,000 houses = 12,000,000 operations!")
-    print("\nEfficient code: O(n) complexity") 
+    print("\nEfficient code:") 
     print("  - Convert houses to set once: O(m)")
     print("  - Check each package: O(n)")
     print("  - Total: O(n + m) = 15,800 operations!")
