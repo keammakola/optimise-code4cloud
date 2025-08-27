@@ -1,13 +1,13 @@
 """
-🍕 RESTAURANT KITCHEN DEMO
-=========================
+RESTAURANT KITCHEN DEMO
+
 
 Interactive analogy: Bad code is like a chaotic restaurant kitchen!
 
 Scenario: Making 100 orders of "Ultimate Pizza" 
 Each pizza needs: dough, sauce, cheese, pepperoni
 
-Watch the difference between a chaotic kitchen vs organized kitchen!
+Watch the difference between a chaotic kitchen vs organised kitchen!
 This demo uses REAL resource usage - no fake delays!
 """
 
