@@ -44,7 +44,7 @@ def run_restaurant_demo():
     
     print(f"RESOURCE USAGE COMPARISON:")
     print(f"┌─────────────────────┬─────────────────┬─────────────────┬─────────────────┐")
-    print(f"│ Kitchen Type        │ CPU Operations         │ Memory (MB)     │ Storage Trips   │")
+    print(f"│ Kitchen Type        │ CPU Operations  │ Memory (MB)     │ Storage Trips   │")
     print(f"├─────────────────────┼─────────────────┼─────────────────┼─────────────────┤") 
     print(f"│  Chaotic Kitchen  │ {chaotic_demo.cpu_operations:>13,}   │ {chaotic_demo.memory_allocations:>13.1f}     │ {chaotic_demo.storage_trips:>13}     │")
     print(f"│  Organised Kitchen│ {organised_demo.cpu_operations:>13,}   │ {organised_demo.memory_allocations:>13.1f}     │ {organised_demo.storage_trips:>13}     │")
