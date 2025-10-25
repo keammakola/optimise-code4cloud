@@ -111,5 +111,4 @@ def optimised_kitchen_demo(num_orders_to_show):
 
     return demo
 
-# --- Run the Simulation for a small number of orders to clearly show the output ---
 optimised_kitchen_demo(1000)
