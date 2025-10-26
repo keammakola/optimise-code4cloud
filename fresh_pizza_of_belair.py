@@ -1,4 +1,5 @@
 import random
+from colorama import Fore, Style, init
 
 class KitchenDemo:
     def __init__(self):
@@ -35,18 +36,20 @@ def simulate_ingredient_processing(ingredient_data):
         processed.append(result)
 
     return processed, len(ingredient_data) + 1
- 
 
 def optimised_kitchen_demo(num_orders_to_show):
     """
     Optimised function that minimises storage trips and reuses processed ingredients.
     """
+    init() # Initialize colorama
     demo = KitchenDemo()
-    print("--- OPTIMISED KITCHEN IS STARTING (Costs in ZAR) ---")
-    print("Implementing batching and caching for maximum efficiency.\n")
+    print(f"\n{Fore.CYAN}{'='*60}")
+    print(f"{Fore.WHITE}🏪 OPTIMISED KITCHEN SIMULATOR {Fore.YELLOW}(Costs in ZAR)")
+    print(f"{Fore.CYAN}{'='*60}{Style.RESET_ALL}\n")
+    print(f"{Fore.GREEN}Implementing batching and caching for maximum efficiency...{Style.RESET_ALL}\n")
     
-    # --- PHASE 1: BATCHING & PRE PROCESSING (Runs only ONCE) ---
-    print("1. Initialising Kitchen (Batching Common Ingredients)...")
+    # --- PHASE 1: BATCHING & PRE PROCESSING ---
+    print(f"{Fore.YELLOW}📦 PHASE 1: Initializing Kitchen (Batching Common Ingredients)...{Style.RESET_ALL}")
     
     common_ingredients_processed = {}
     
@@ -63,21 +66,18 @@ def optimised_kitchen_demo(num_orders_to_show):
         
         common_ingredients_processed[ingredient_name] = processed_data
         
-        # Update cost after batch operations
         step_cost_zar = demo.cost_per_storage_trip_zar + \
                         (cpu_ops_fetch * demo.cost_per_cpu_op_zar) + \
                         (len(data) / 1000 * demo.cost_per_memory_mb_zar) + \
                         (cpu_ops_proc * demo.cost_per_cpu_op_zar)
         demo.total_cost_zar += step_cost_zar
-        print(f"   ✅ Fetched & processed **{ingredient_name}** once. Cost: R{step_cost_zar:.6f}")
+        print(f"{Fore.GREEN}   ✅ Processed {Fore.CYAN}{ingredient_name:>6}{Fore.GREEN} | Cost: {Fore.YELLOW}R{step_cost_zar:.6f}{Style.RESET_ALL}")
 
-    # --- PHASE 2: ORDER FULFILMENT (The main efficient loop) ---
-    print(f"\n2. Starting Order Fulfilment (Showing first {num_orders_to_show} orders)...")
+    # --- PHASE 2: ORDER FULFILMENT ---
+    print(f"\n{Fore.YELLOW}🔄 PHASE 2: Order Fulfillment (Processing {num_orders_to_show:,} orders)...{Style.RESET_ALL}")
     
     for order in range(num_orders_to_show):
         order_cost_start = demo.total_cost_zar 
-        
-        # We only perform the single expensive, non reusable task inside the loop.
         
         # 1. Unique Ingredient Fetch (Pepperoni)
         pepperoni_data, cpu_ops_fetch = simulate_storage_trip()
@@ -88,7 +88,6 @@ def optimised_kitchen_demo(num_orders_to_show):
         processed_pepperoni, cpu_ops_proc = simulate_ingredient_processing(pepperoni_data)
         demo.cpu_operations += cpu_ops_proc
         
-        # Calculate cost for this order
         step_cost_zar = demo.cost_per_storage_trip_zar + \
                         (cpu_ops_fetch * demo.cost_per_cpu_op_zar) + \
                         (len(pepperoni_data) / 1000 * demo.cost_per_memory_mb_zar) + \
@@ -98,16 +97,18 @@ def optimised_kitchen_demo(num_orders_to_show):
         demo.orders_completed += 1
         
         order_total_cost = demo.total_cost_zar - order_cost_start
-        print(f"   🍕 Order #{order + 1} Complete. Only 1 storage trip. Cost: **R{order_total_cost:.6f}**")
-        
+        # Only show every 100th order to avoid spam
+        print(f"{Fore.BLUE}   🍕 Order #{order + 1:>4} | Cost: {Fore.YELLOW}R{order_total_cost:.6f}{Style.RESET_ALL}")
 
-    
-    print("\n-------------------------------------------------------------")
-    print("OPTIMISED KITCHEN :")
-    print(f"Total Orders: {num_orders_to_show:,}")
-    print(f"Total Storage Trips: **{num_orders_to_show:,} trips**")
-    print(f"💰 Final Estimated Cost (Scaled): **R{order_total_cost:.4f}**")
-    print("-------------------------------------------------------------")
+    print(f"\n{Fore.CYAN}{'='*60}")
+    print(f"{Fore.WHITE}📊 FINAL STATISTICS:")
+    print(f"{Fore.CYAN}{'='*60}")
+    print(f"{Fore.GREEN}📦 Total Orders Completed: {Fore.WHITE}{num_orders_to_show:,}")
+    print(f"{Fore.GREEN}💾 Total Storage Trips:    {Fore.WHITE}{demo.storage_trips:,}")
+    print(f"{Fore.GREEN}💰 Final Cost:             {Fore.YELLOW}R{demo.total_cost_zar:.4f}")
+    print(f"\n{Fore.GREEN}Fun Fact: Domino's has 20 000 branches world wide.")
+    print(f"It would cost them around R{(demo.total_cost_zar * 20000 * 365):.0f} to run this code each year!{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}{'='*60}{Style.RESET_ALL}")
 
     return demo
 
