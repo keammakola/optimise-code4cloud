@@ -88,13 +88,12 @@ def chaotic_kitchen_demo(num_orders_to_show):
     print(f"{Fore.MAGENTA}🎯 Dough Re Mi SUMMARY 🎯{Style.RESET_ALL}")
     print(f"{Fore.CYAN}📊 Total Orders Completed: {demo.orders_completed}")
     print(f"🚶 Total Storage Trips: {demo.storage_trips}")
-    print(f"💰 Total Estimated Cost: R{demo.total_cost_zar:.4f}{Style.RESET_ALL}")
+    print(f"💰 Total Estimated Cost: R{demo.total_cost_zar:.2f}{Style.RESET_ALL}")
     
-    print(f"\n{Fore.GREEN}Fun Fact: Domino's has 20 000 branches world wide.")
-    print(f"It would cost them around R{(demo.total_cost_zar * 20000 * 365):.0f} to run this code each year!{Style.RESET_ALL}")
+    print(f"To run this code 8 times a day for the whole year, it would cost the company R{(demo.total_cost_zar *8 * 365):.0f}!{Style.RESET_ALL}")
     print(f"{Fore.YELLOW}{'=' * 60}{Style.RESET_ALL}\n")
 
     return demo
 
 
-chaotic_kitchen_demo(500)
+chaotic_kitchen_demo(5000)

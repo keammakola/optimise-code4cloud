@@ -97,8 +97,7 @@ def optimised_kitchen_demo(num_orders_to_show):
         demo.orders_completed += 1
         
         order_total_cost = demo.total_cost_zar - order_cost_start
-        # Only show every 100th order to avoid spam
-        print(f"{Fore.BLUE}   🍕 Order #{order + 1:>4} | Cost: {Fore.YELLOW}R{order_total_cost:.6f}{Style.RESET_ALL}")
+    print(f"{Fore.BLUE}All {num_orders_to_show} are processed!{Style.RESET_ALL}")
 
     print(f"\n{Fore.CYAN}{'='*60}")
     print(f"{Fore.WHITE}📊 FINAL STATISTICS:")
@@ -106,10 +105,9 @@ def optimised_kitchen_demo(num_orders_to_show):
     print(f"{Fore.GREEN}📦 Total Orders Completed: {Fore.WHITE}{num_orders_to_show:,}")
     print(f"{Fore.GREEN}💾 Total Storage Trips:    {Fore.WHITE}{demo.storage_trips:,}")
     print(f"{Fore.GREEN}💰 Final Cost:             {Fore.YELLOW}R{demo.total_cost_zar:.4f}")
-    print(f"\n{Fore.GREEN}Fun Fact: Domino's has 20 000 branches world wide.")
-    print(f"It would cost them around R{(demo.total_cost_zar * 20000 * 365):.0f} to run this code each year!{Style.RESET_ALL}")
+    print(f"To run this code 8 times a day for the whole year, it would cost the company R{(demo.total_cost_zar * 8 * 365):.0f}!{Style.RESET_ALL}")
     print(f"{Fore.CYAN}{'='*60}{Style.RESET_ALL}")
 
     return demo
 
-optimised_kitchen_demo(1000)
+optimised_kitchen_demo(5000)
