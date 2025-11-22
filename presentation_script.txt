@@ -1,0 +1,177 @@
+Code Optimization = Cost Optimization: 20-Minute Presentation Script
+
+Talk Title: "Code-Driven FinOps: How Smart Python Saves South African Businesses Money"
+
+===============================================================================
+
+Part 1: The Hook (0:00 – 3:00)
+
+Opening (Slide: Title)
+"Good evening. I want to start with a simple question: What's the most expensive line of code in your application?"
+
+"It's not the fancy AI model. It's not the complex algorithm. It's that innocent-looking database query that runs 80,000 times a day because someone wrote for pizza in pizzas: get_ingredients(pizza.id)."
+
+"My name is Kea, and I'm here to show you how efficient coding directly translates to lower cloud bills. Because in South Africa, at R17 to the dollar, every optimization matters."
+
+The Problem (Slide: Cost Reality)
+"Your cloud provider bills you for three things: CPU time, memory usage, and I/O operations. Inefficient code wastes all three."
+
+"A poorly written function doesn't just run slowly—it burns money. Every. Single. Time. It executes."
+
+"Today, I'll show you exactly how much money bad code costs, and how to fix it."
+
+===============================================================================
+
+Part 2: The Business Case (3:00 – 5:00)
+
+Real Numbers (Slide: Debonairs Example)
+"Let's use a real South African example. Debonairs Pizza processes roughly 80,000 pizzas daily across their stores."
+
+"Each pizza order hits their system with multiple database queries. Let's see what happens when code is inefficient versus optimized."
+
+The Setup
+"I've built two pizza kitchen simulations:
+- 'Dough Re Mi': The chaotic kitchen with inefficient code
+- 'Fresh Pizza of Bel-Air': The optimized kitchen with smart algorithms"
+
+"Same business logic. Same pizzas. Completely different cloud costs."
+
+===============================================================================
+
+Part 3: Live Demo - Database Optimization (5:00 – 12:00)
+
+Demo 1: The Chaotic Kitchen
+(Switch to terminal, run dough_re_mi.py)
+
+"This is the N+4 query problem. For every pizza, we make 4 separate database calls:
+- Get dough
+- Get sauce  
+- Get cheese
+- Get pepperoni"
+
+"Watch the cost accumulate..."
+
+(Let demo run, showing progress)
+
+"80,000 pizzas = 320,000 database queries. At GCP's Cloud SQL pricing, that's R58.82 per day just for database calls."
+
+"Annual cost: R21,470 in database overhead alone."
+
+Demo 2: The Optimized Kitchen
+(Run fresh_pizza_of_belair.py)
+
+"Now watch the optimized version. One mega-query loads ALL ingredients upfront. Then we process 80,000 pizzas from cache."
+
+"Total database queries: 1. Total cost: R0.11 per day."
+
+"Same pizzas. Same business logic. 99.8% cost reduction."
+
+The Impact
+"That's R21,000+ annual savings just from fixing one query pattern. Multiply this across your entire application."
+
+===============================================================================
+
+Part 4: Memory Optimization Demo (12:00 – 16:00)
+
+The Memory Trap
+(Show memory_demo.py code)
+
+"Here's another common mistake: loading entire files into memory."
+
+BAD: Loads 5GB file into RAM
+with open('huge_file.txt', 'r') as f:
+    data = f.readlines()  # Requires 16GB instance
+
+"This forces you to use expensive, high-memory instances."
+
+The Fix
+GOOD: Streams line by line
+with open('huge_file.txt', 'r') as f:
+    for line in f:  # Works on 2GB instance
+        process(line)
+
+(Run memory demo)
+
+"Result: 96% reduction in compute costs. From R3.23/hour to R0.14/hour."
+
+"For a process that runs 8 hours daily, that's R9,000+ annual savings per workload."
+
+===============================================================================
+
+Part 5: The Toolkit (16:00 – 18:00)
+
+Quick Wins (Slide: Optimization Patterns)
+
+1. Kill N+1 Queries
+BAD: Multiple queries
+for user in users:
+    posts = db.get_posts(user.id)
+
+GOOD: Single batch query  
+posts = db.get_posts_for_users(user_ids)
+
+2. Use Generators for Large Data
+BAD: Memory hungry
+results = [process(x) for x in huge_list]
+
+GOOD: Memory efficient
+results = (process(x) for x in huge_list)
+
+3. Choose Right Data Structures
+BAD: O(n) lookup
+if item in my_list:
+
+GOOD: O(1) lookup  
+if item in my_set:
+
+4. Async for I/O
+BAD: Sequential blocking
+for url in urls:
+    response = requests.get(url)
+
+GOOD: Concurrent
+async with aiohttp.ClientSession() as session:
+    tasks = [fetch(session, url) for url in urls]
+    await asyncio.gather(*tasks)
+
+===============================================================================
+
+Part 6: Take Action (18:00 – 20:00)
+
+Immediate Steps (Slide: Action Plan)
+"Here's what you do tomorrow:
+
+1. Profile your code: Use cProfile to find bottlenecks
+2. Check your queries: Look for N+1 problems  
+3. Monitor memory: Use memory_profiler
+4. Set up cost alerts: Track your optimization wins"
+
+The ROI Reality (Slide: ROI Calculator)
+"Let's talk ROI:
+- Investment: 1 week developer time (R50,000)
+- Typical savings: 60% cloud cost reduction
+- Payback period: Usually under 2 months
+- Annual ROI: Often 500%+"
+
+Closing Message
+"In South Africa's economic climate, with the Rand at R17 to the dollar, code optimization isn't just good practice—it's business survival."
+
+"Every inefficient loop, every unnecessary query, every memory leak is money walking out the door."
+
+"The most expensive code is the code that costs you customers because your cloud bill is too high to scale."
+
+"Optimize your code. Optimize your costs. Thank you."
+
+(Show QR code for GitHub repo)
+
+===============================================================================
+
+Timing Breakdown:
+- Hook & Problem: 3 minutes
+- Business Case: 2 minutes  
+- Database Demo: 7 minutes
+- Memory Demo: 4 minutes
+- Toolkit: 2 minutes
+- Action Plan: 2 minutes
+
+Total: 20 minutes
